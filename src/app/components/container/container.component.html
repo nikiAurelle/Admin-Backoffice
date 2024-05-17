@@ -14,14 +14,14 @@
       <strong>{{datas.length}}</strong> donnée retrouvée.
     </p>
 
-    <app-pagination
+    <!-- <app-pagination
     [current]="result.current"
     [allCount]="result.allCount"
     [next]="result.next"
     [previous]="result.previous"
     [pageLimit]="result.pageLimit"
 
-    ></app-pagination>
+    ></app-pagination> -->
 
     <app-search-form
       [name]="entityNames[0]"
@@ -29,6 +29,14 @@
     (newValue)="searchData($event)"
     />
 
+
+    <div class="d-flex justify-content-between">
+      <div class="mt-2">
+        <a class="btn-success btn " [routerLink]="['/',pagePath, 'add']">
+          <i class="bi bi-sort-alpha-down"></i>
+          Trier
+        </a>
+      </div>
 
     <div class="d-flex gap-2 py-2 justify-content-end ">
       <a class="btn-success btn mb-2" [routerLink]="['/',pagePath, 'add']">
@@ -55,6 +63,9 @@
         </ul>
       </div>
     </div>
+
+  </div>
+
     <table class="table shadow table-responsive">
     <thead>
       <tr>
