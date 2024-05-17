@@ -8,7 +8,8 @@ import {DataManagerComponent} from "./components/data-manager/data-manager.compo
 const routes: Routes = [
   {
     path: "",
-    component: ContainerComponent
+    redirectTo: "/product",
+    pathMatch: "full"
   },
    {
     path: "product",
