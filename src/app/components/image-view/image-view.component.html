@@ -1,0 +1,34 @@
+<div class="row">
+  <div class="col-md-3 p-2">
+    <div class="image-item" *ngIf="selectedImage">
+       <img [src]="selectedImage" alt="image">
+     <!-- <div class="d-flex gap-2 justify-content-center p-1">
+       <button class="btn btn-success" (click)="updateImage(item.imageUrl)"><i class="fa fa-edit"></i></button>
+       <button class="btn btn-danger" (click)="removeImage(item.imageUrl)">
+         <i class="fa fa-trash">
+         </i></button>
+    </div> -->
+    </div>
+
+  </div>
+  <div class="col-md-12 p-2">
+    <!-- <input type="file" name="file" class="none" id="file" (change)="addFile($event)"> -->
+    <button class="btn btn-success" (click)="selectImage($event)">
+      <i class="fa fa-plus"></i>
+      Ajouter une image
+    </button>
+    <!-- {{errorMessage}} -->
+  </div>
+  <!-- <app-image-preview
+    *ngIf="imageUrl"
+     [src]="imageUrl"
+    (closeModal)="setImageView(null)"
+  /> -->
+</div>
+
+<!-- <div>
+  <button (click)="selectImage()">Ajouter une image</button>
+</div>
+<div *ngIf="selectedImage">
+  <img [src]="selectedImage" alt="Image sélectionnée">
+</div> -->

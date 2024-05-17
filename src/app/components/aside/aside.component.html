@@ -1,0 +1,10 @@
+<aside class="mt-4">
+  <h5 class="text-white fs-4">JIDENIK</h5>
+  <ul class="fw-bold">
+  <li *ngFor="let route of routes">
+    <a [routerLink]="[route.path]" routerLinkActive="active">
+      {{route.name}}</a>
+  </li>
+</ul>
+
+</aside>

@@ -1,0 +1,12 @@
+.page-container {
+  min-height: 100vh;
+  overflow-x: hidden;
+  width: 100%;
+  margin: 0;
+  background-color: #efefef;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.aside{
+  background-color: rgb(255, 231, 255);
+}

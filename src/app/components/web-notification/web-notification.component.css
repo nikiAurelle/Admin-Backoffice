@@ -1,0 +1,9 @@
+.alert-container{
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+}
+
+span{
+  margin-left: 20px;
+}

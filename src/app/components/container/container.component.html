@@ -1,0 +1,111 @@
+<h2>  {{pageName}}</h2>
+
+
+
+<app-loading *ngIf="isLoading"/>
+
+<div *ngIf="!isLoading">
+
+  <div class="table-container" *ngIf="datas?.length">
+    <p *ngIf="datas?.length > 1">
+      <strong>{{datas.length}}</strong> données retrouvées.
+    </p>
+    <p *ngIf="datas?.length == 1">
+      <strong>{{datas.length}}</strong> donnée retrouvée.
+    </p>
+
+    <app-pagination
+    [current]="result.current"
+    [allCount]="result.allCount"
+    [next]="result.next"
+    [previous]="result.previous"
+    [pageLimit]="result.pageLimit"
+
+    ></app-pagination>
+
+    <app-search-form
+      [name]="entityNames[0]"
+      [entity]="pagePath"
+    (newValue)="searchData($event)"
+    />
+
+
+    <div class="d-flex gap-2 py-2 justify-content-end ">
+      <a class="btn-success btn mb-2" [routerLink]="['/',pagePath, 'add']">
+        <i class="fa fa-plus"></i>
+        Nouveau
+      </a>
+      <button class="btn btn-success mb-2" (click)="setDisplaySelectionBox()">
+        <i class="fa-solid fa-layer-group"></i>
+      </button>
+      <div class="entityNames absolute shadow p-2" *ngIf="displaySelectionBox">
+        <ul>
+          <li *ngFor="let entityName of entityNamesAll; let first = first">
+            <input type="checkbox" name=""
+                   id="{{entityName}}"
+                   class="form-check-input"
+                   [checked]="first || entityNames.includes(entityName)"
+                   (change)="setEntityNames($event, entityName)"
+                   [disabled]="first"
+
+            >
+              <label for="{{entityName}}">{{entityName | formatName}}</label>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+    <table class="table shadow table-responsive">
+    <thead>
+      <tr>
+        <th scope="col">
+          <input class="form-check-input" type="checkbox" name="" id="">
+        </th>
+        <th scope="col">No</th>
+        <th scope="col" *ngFor="let name of entityNames">
+          {{name | formatName}}
+        </th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of datas; let index=index">
+        <td scope="row">
+          <input class="form-check-input" type="checkbox" name="" id="4">
+        </td>
+        <td scope="row">{{index+1}}</td>
+        <td  *ngFor="let name of entityNames">
+          <div [innerHTML]="getValue(data, name) | formatValue: [name, data]"></div>
+        </td>
+        <td>
+          <!-- <a [routerLink]="[data._id, 'view']" class="btn btn-success m-1">
+            <i class="fa-solid fa-eye"></i>
+          </a> -->
+          <a [routerLink]="[data._id, 'edit']" class="btn btn-primary m-1">
+            <i class="fa-solid fa-edit"></i>
+          </a>
+          <a [routerLink]="[data._id, 'delete']" class="btn btn-danger m-1"  >
+            <i class="fa-solid fa-trash"></i>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div *ngIf="!datas?.length" class="shadow empty-box">
+    <p>Aucune donnée disponible</p>
+    <a class="btn btn-success" routerLink="add">
+      <i class="fa fa-plus"> </i> Ajouter
+    </a>
+  </div>
+</div>
+
+
+<div style="margin: 100px;">
+    <h1>Voice recognition</h1>
+    <button style="margin: 10px;" (click)="startService()">Start</button>
+    <button style="margin: 10px;" (click)="stopService()">Stop</button>
+    <p>{{service.text}}</p>
+</div>
+

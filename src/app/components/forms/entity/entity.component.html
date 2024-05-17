@@ -1,0 +1,65 @@
+<form action="" [formGroup] = "form" *ngIf="form" class="p-3">
+  <div *ngIf="invalidInput" class="text-black bg-danger text-center">
+    <p *ngFor="let error of messageError">{{ error }}</p>
+  </div>
+  <div class="form-inline" *ngFor="let name of entityNames">
+      <label for="" class="fw-bold mt-3">
+        {{name | formatName}}:
+      </label>
+
+    <input
+      *ngIf="(name | formatType: data) === 'INPUT'"
+      class="form-control"
+
+      [formControlName]="name"
+      [name]="name"
+      [value]="name | formatFormValue: data"
+       >
+    <select [name]="name"
+            class="form-control single-select"
+            *ngIf="(name | formatType: data) === 'SELECT'">
+      <option [value]=true [selected]="(name | formatFormValue: data) === true">Oui</option>
+      <option [value]=false [selected]="(name | formatFormValue: data) === false">Non</option>
+
+    </select>
+      <select [name]="name"
+            class="form-control single-select"
+            *ngIf="(name | formatType: data) === 'CURRENCY'">
+      <option value="CAD" [selected]="(name | formatFormValue: data) === 'CAD'">CAD</option>
+      <option value="USD" [selected]="(name | formatFormValue: data) === 'USD'">USD</option>
+
+    </select>
+
+    <div *ngIf="(name | formatType: data) === 'IMAGE'">
+      <app-image-view
+        (emitFile)="handleChangeFile($event)"
+        [imageUrls] = "(name | formatFormValue: data)"
+      />
+    </div>
+
+    <div *ngIf="(name | formatType: data) === 'OPTION'">
+      <app-option-form
+      [options] = "(name | formatFormValue: data)"
+      (emitOption)="handelOption($event)"
+      />
+    </div>
+    <div *ngIf="(name | formatType: data) === 'SELECT_CATEGORIES'">
+     <select name="categories[]"
+             class="form-control select-categories"
+             multiple="multiple">
+
+       <option [value]="category._id"
+                [selected]="categoriesView.includes(category._id)"
+               *ngFor="let category of categories">{{category.name}}
+       </option>
+     </select>
+    </div>
+  </div>
+
+  <div class="action d-flex justify-content-end py-1 gap-2">
+    <button class="btn btn-danger">Annuler</button>
+    <button class="btn btn-success" (click)="handelSubmit()" >{{btn}}</button>
+
+    <!-- <button class="btn btn-success" (click)="handelSubmit()" [disabled]="!this.form.valid">Modifier</button> -->
+  </div>
+</form>

@@ -1,0 +1,8 @@
+button:disabled
+{
+  cursor: not-allowed;
+  background-color: rgb(131, 210, 141);
+}
+.error{
+  color: red;
+}
