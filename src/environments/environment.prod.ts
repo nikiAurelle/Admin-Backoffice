@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-  apiUrl: "https://serveur-backoffice.vercel.app/"
+  apiUrl: "https://serveur-node-back-office.vercel.app/"
 };
